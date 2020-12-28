@@ -1,0 +1,8 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: wrlhblog
+
+#数据库连接池
