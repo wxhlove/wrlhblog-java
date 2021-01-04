@@ -2,6 +2,9 @@ package com.wrlhblog.service;
 
 import com.wrlhblog.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * <p>
@@ -11,6 +14,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author 
  * @since 2020-12-29
  */
-public interface IUserService extends IService<User> {
+public interface IUserService extends UserDetailsService,IService<User> {
 
+    @Override
+    UserDetails loadUserByUsername(String s) throws UsernameNotFoundException;
 }
