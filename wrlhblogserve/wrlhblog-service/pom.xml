@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.wrlhblog</groupId>
-            <artifactId>wrlhblog-mapper</artifactId>
+            <artifactId>wrlhblog-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

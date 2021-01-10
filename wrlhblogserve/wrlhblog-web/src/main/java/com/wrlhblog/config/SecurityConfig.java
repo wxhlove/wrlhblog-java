@@ -130,6 +130,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()  //从这里的接口都可以返回；
                 .and()
                 .logout() //注销登录
+                .logoutUrl("/logout")
+                .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(new LogoutSuccessHandler() {  //注销成功出理项
                     @Override
                     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -155,7 +157,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         PrintWriter writer = response.getWriter();
                         RespBean respBean = RespBean.error("访问失败");
                         if (e instanceof InsufficientAuthenticationException) {
-                            System.out.println("e -- " + e);
                             respBean.setMessage("登录异常，请联系管理员");
                         }
                         String respBeanStr = new ObjectMapper().writeValueAsString(respBean);

@@ -2,16 +2,18 @@ package com.wrlhblog.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
  * 菜单表
  * </p>
  *
- * @author 
+ * @author
  * @since 2020-12-29
  */
 @Data
@@ -37,6 +39,11 @@ public class Menu implements Serializable {
     private String path;
 
     /**
+     * 模块所在文件夹
+     */
+    private String componentDir;
+
+    /**
      * 模块名称
      */
     private String component;
@@ -51,15 +58,38 @@ public class Menu implements Serializable {
      */
     private String iconCls;
 
+
+    /**
+     * 是否需要登录显示
+     */
+    private Boolean requireAuth;
+
     /**
      * 父级id
      */
     private Long parentId;
 
+
+    /**
+     * 当前是否是父级目录(0不是 ， 1是)
+     */
+    private Boolean parentIs;
+
+
     /**
      * 是否是父级目录
      */
     private Boolean enabled;
+
+    /**
+     * meta附加选项
+     */
+    private Meta meta;
+
+    /**
+     * 菜单子选项
+     */
+    private List<Menu> children;
 
 
 }
