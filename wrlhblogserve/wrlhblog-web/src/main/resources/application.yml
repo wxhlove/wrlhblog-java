@@ -12,3 +12,6 @@ spring:
     password: wxh564738
     url: jdbc:mysql://10.211.55.7/wrlhblog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
     type: com.alibaba.druid.pool.DruidDataSource
+logging:
+  level:
+    com.wrlhblog.mapper: debug

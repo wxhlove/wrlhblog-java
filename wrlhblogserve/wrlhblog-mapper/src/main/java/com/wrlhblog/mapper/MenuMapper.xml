@@ -38,31 +38,32 @@
 
     <select id="getMenuByUserId" resultMap="MenuBaseResultMap">
 
-         SELECT
-            m1.*,
-            m2.id id2,
-            m2.url url2,
-            m2.path path2,
-            m2.component_dir component_dir2,
-            m2.component component2,
-            m2.NAME name2,
-            m2.icon_cls icon_cls2,
-            m2. parent_is  parent_is2,
-            m2.require_auth require_auth2,
-            m2.parent_id parent_id2,
-            m2.enabled enabled2
-        FROM
-            menu m1
-            LEFT JOIN menu m2 ON m2.parent_id = m1.id
-            LEFT JOIN role_menu rm ON m2.id = rm.mid
-            LEFT JOIN role r ON rm.rid = r.id
-            LEFT JOIN user_role ur ON ur.rid = rm.rid
-        WHERE
-            ur.id = #{id}
-        ORDER BY
-            m1.id,
-            m2.id
-
+            SELECT
+                DISTINCT
+                m2.id id2,
+                m2.url url2,
+                m2.path path2,
+                m2.component_dir component_dir2,
+                m2.component component2,
+                m2.NAME name2,
+                m2.icon_cls icon_cls2,
+                m2.parent_is parent_is2,
+                m2.require_auth require_auth2,
+                m2.parent_id parent_id2,
+                m2.enabled enabled2 ,
+                    m1.*
+            FROM
+                menu m1
+                LEFT JOIN menu m2 ON m2.parent_id = m1.id
+                LEFT JOIN role_menu rm ON m2.id = rm.mid
+                LEFT JOIN role r ON rm.rid = r.id
+                LEFT JOIN user_role ur ON ur.rid = rm.rid
+            WHERE
+            if ( 'ROLE_admin' = (select   r.name from  user_role ur  left join role r on ur.rid = r.id where ur.uid = #{id} )   , 1=1 , ur.uid = 1 )
+            and m2.url != '/'
+            ORDER BY
+                m1.id,
+                m2.id
 
     </select>
 

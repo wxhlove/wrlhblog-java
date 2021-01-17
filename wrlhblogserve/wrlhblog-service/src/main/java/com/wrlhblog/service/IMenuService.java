@@ -23,6 +23,4 @@ public interface IMenuService extends IService<Menu> {
      * @return
      */
     List<Menu> getMenuByUserId(Long id);
-
-
 }
