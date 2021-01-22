@@ -2,4 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wrlhblog.mapper.LableMapper">
 
+    <resultMap id="baseMap" type="com.wrlhblog.model.Lable">
+
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="name" property="name"/>
+        <result column="name_style_color" property="nameStyleColor"/>
+        <result column="descripation" property="descripation"/>
+        <result column="add_username" property="addUsername"/>
+        <result column="add_time" property="addTime"/>
+    </resultMap>
+
+
+    <select id="getLables" resultMap="baseMap">
+        select * from lable where uid = #{id}
+    </select>
+
 </mapper>

@@ -2,6 +2,9 @@ package com.wrlhblog.mapper;
 
 import com.wrlhblog.model.Lable;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface LableMapper extends BaseMapper<Lable> {
 
+    List<Lable> getLables(@Param("id") Long id);
 }

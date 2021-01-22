@@ -1,18 +1,19 @@
 package com.wrlhblog.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
  * 文章表
  * </p>
  *
- * @author 
+ * @author
  * @since 2020-12-29
  */
 @Data
@@ -48,14 +49,14 @@ public class Article implements Serializable {
     private String title;
 
     /**
-     * md文件源码
+     * md文件源码/富文本源码
      */
-    private String mdContent;
+    private String articleContent;
 
     /**
-     * html源码
+     * 编辑模式(markdown /富文本)
      */
-    private String htmlContent;
+    private String editModel;
 
     /**
      * 总结
@@ -78,9 +79,9 @@ public class Article implements Serializable {
     private Integer state;
 
     /**
-     * 页面视图
+     * 总结背景图片
      */
-    private Integer pageView;
+    private String imageUrl;
 
 
 }
