@@ -75,9 +75,9 @@ public class Lable implements Serializable {
         NameColor nameColor = new NameColor();
         nameColor.setBorderColor(nameStyleColor);
         nameColor.setColor(nameStyleColor);
-        this.nameStyleColor = nameStyleColor;
-
         this.nameColor = nameColor;
+
+        this.nameStyleColor = nameStyleColor;
     }
 
     public NameColor getNameColor() {
