@@ -1,16 +1,19 @@
 package com.wrlhblog.service.impl;
 
-import com.wrlhblog.model.Sort;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wrlhblog.mapper.SortMapper;
+import com.wrlhblog.model.PageCondition;
+import com.wrlhblog.model.Sort;
+import com.wrlhblog.model.SortOrLableSearchCondition;
 import com.wrlhblog.model.User;
 import com.wrlhblog.service.ISortService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wrlhblog.utils.UserInfoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * <p>
@@ -30,11 +33,22 @@ public class SortServiceImpl extends ServiceImpl<SortMapper, Sort> implements IS
     /**
      * 查询分类列表
      *
+     * @param currentPage
+     * @param pageSize
+     * @param solSearchCondition
      * @return
      */
     @Override
-    public List<Sort> getSorts() {
-        return sortMapper.getSorts(UserInfoUtil.getUser().getId());
+    public PageCondition<Sort> getSorts(Integer currentPage, Integer pageSize, SortOrLableSearchCondition solSearchCondition) {
+        if (currentPage == null) {
+            currentPage = 1;
+        }
+        if (pageSize == null) {
+            pageSize = Integer.MAX_VALUE;
+        }
+        Page<Sort> page = new Page<Sort>(currentPage, pageSize);
+        IPage<Sort> iPage = sortMapper.getSorts(page, UserInfoUtil.getUser().getId(), solSearchCondition);
+        return new PageCondition<Sort>(iPage.getTotal(), iPage.getRecords());
     }
 
     /**
@@ -50,5 +64,20 @@ public class SortServiceImpl extends ServiceImpl<SortMapper, Sort> implements IS
         sort.setAddUsername(user.getUsername());
         sort.setUid(user.getId());
         return sortMapper.insert(sort);
+    }
+
+    @Override
+    public int updateSort(Sort sort) {
+        return sortMapper.updateById(sort);
+    }
+
+    @Override
+    public int deleteSort(Long id) {
+        return sortMapper.deleteById(id);
+    }
+
+    @Override
+    public Sort getSortByname(String name) {
+        return sortMapper.getSortByname(name);
     }
 }

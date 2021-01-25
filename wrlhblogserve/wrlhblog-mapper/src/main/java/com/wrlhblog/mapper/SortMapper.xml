@@ -14,8 +14,28 @@
     </resultMap>
 
     <select id="getSorts" resultMap="baseMap">
-        select * from sort where uid = #{id}
+        select
+        *
+        from sort
+        where uid = #{id}
+        <if test="solSearchCondition != null ">
+            <if test="solSearchCondition.sortName != null  and solSearchCondition.sortName != ''">
+                and name like concat ('%',#{solSearchCondition.sortName},'%')
+            </if>
+
+            <if test="solSearchCondition.startTime != null and solSearchCondition.startTime != ''">
+                and add_time &gt;= #{solSearchCondition.startTime}
+
+            </if>
+
+            <if test="solSearchCondition.endTime != null and solSearchCondition.endTime != ''">
+                and add_time &lt;= #{solSearchCondition.endTime}
+            </if>
+        </if>
     </select>
 
+    <select id="getSortByname" resultMap="baseMap">
+        select * from sort where name = #{name} limit 1
+    </select>
 
 </mapper>

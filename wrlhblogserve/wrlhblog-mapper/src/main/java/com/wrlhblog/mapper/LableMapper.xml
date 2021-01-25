@@ -15,7 +15,27 @@
 
 
     <select id="getLables" resultMap="baseMap">
-        select * from lable where uid = #{id}
-    </select>
+        select
+        *
+        from lable
+        where uid = #{id}
+        <if test="solSearchCondition != null ">
+            <if test="solSearchCondition.lableName != null  and solSearchCondition.lableName != ''">
+                and name like concat ('%',#{solSearchCondition.lableName},'%')
+            </if>
 
+            <if test="solSearchCondition.startTime != null and solSearchCondition.startTime != ''">
+                and add_time &gt;= #{solSearchCondition.startTime}
+
+            </if>
+
+            <if test="solSearchCondition.endTime != null and solSearchCondition.endTime != ''">
+                and add_time &lt;= #{solSearchCondition.endTime}
+            </if>
+        </if>
+    </select>
+    <select id="getLableByName" resultType="com.wrlhblog.model.Lable">
+
+        select * from lable where name = #{name}
+    </select>
 </mapper>

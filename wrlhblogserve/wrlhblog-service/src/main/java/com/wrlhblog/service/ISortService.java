@@ -1,9 +1,9 @@
 package com.wrlhblog.service;
 
+import com.wrlhblog.model.PageCondition;
 import com.wrlhblog.model.Sort;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
+import com.wrlhblog.model.SortOrLableSearchCondition;
 
 /**
  * <p>
@@ -15,7 +15,13 @@ import java.util.List;
  */
 public interface ISortService extends IService<Sort> {
 
-    List<Sort> getSorts();
+    PageCondition<Sort> getSorts(Integer currentPage, Integer pageSize, SortOrLableSearchCondition solSearchCondition);
 
     int addSort(Sort sort);
+
+    int updateSort(Sort sort);
+
+    int deleteSort(Long id);
+
+    Sort getSortByname(String name);
 }
