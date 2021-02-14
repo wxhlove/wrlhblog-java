@@ -1,0 +1,18 @@
+#配置数据库连接
+spring:
+  datasource:
+    username: root
+    password: wxh564738
+    url: jdbc:mysql://10.211.55.7/wrlhblog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+
+logging:
+  level:
+    com.wrlhblog.mapper: debug
+
+
+
+# 文件上传相关配置
+# 文章标题总结上传限制
+uploadConfig:
+  articleSummarySize: 1024

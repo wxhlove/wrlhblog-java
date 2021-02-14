@@ -31,12 +31,12 @@ public class LableController {
      *
      * @return
      */
-    @GetMapping("/{currentPage}/{pageSize}")
+    @GetMapping(value = {"/{currentPage}/{pageSize}", "/"})
     public PageCondition<Lable> getLables(@PathVariable(value = "currentPage", required = false) Integer currentPage,
-                                   @PathVariable(value = "pageSize", required = false) Integer pageSize,
-                                   @RequestParam(required = false) String lableName,
-                                   @RequestParam(required = false) String startTime,
-                                   @RequestParam(required = false) String endTime) {
+                                          @PathVariable(value = "pageSize", required = false) Integer pageSize,
+                                          @RequestParam(required = false) String lableName,
+                                          @RequestParam(required = false) String startTime,
+                                          @RequestParam(required = false) String endTime) {
         SortOrLableSearchCondition solSearchCondition = new SortOrLableSearchCondition();
         solSearchCondition.setLableName(StringUtils.isEmpty(lableName) ? "" : lableName.trim());
         solSearchCondition.setStartTime(StringUtils.isEmpty(startTime) ? "" : startTime + " 00:00:00");

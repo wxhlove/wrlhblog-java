@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wrlhblog.mapper.DataDicMapper">
+    <resultMap id="BaseResultMap" type="com.wrlhblog.model.DataDic">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="uid" jdbcType="BIGINT" property="uid"/>
+        <result column="dic_code" jdbcType="VARCHAR" property="dicCode"/>
+        <result column="dic_name" jdbcType="VARCHAR" property="dicName"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="state" jdbcType="BOOLEAN" property="state"/>
+        <result column="company" jdbcType="VARCHAR" property="company"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="data_content" jdbcType="VARCHAR" property="dataContent"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, uid,dic_code, dic_name, `describe`, `type`, `state`, company, create_time, `update_time`,
+    data_content
+  </sql>
+
+
+    <select id="getDataDirs" resultMap="BaseResultMap">
+
+        select * from data_dic where uid = #{uid}
+
+    </select>
+</mapper>

@@ -31,12 +31,12 @@ public class SortController {
      *
      * @return
      */
-    @GetMapping("/{currentPage}/{pageSize}")
+    @GetMapping(value = {"/{currentPage}/{pageSize}", "/"})
     public PageCondition<Sort> getSorts(@PathVariable(value = "currentPage", required = false) Integer currentPage,
-                                  @PathVariable(value = "pageSize", required = false) Integer pageSize,
-                                  @RequestParam(required = false) String sortName,
-                                  @RequestParam(required = false) String startTime,
-                                  @RequestParam(required = false) String endTime) {
+                                        @PathVariable(value = "pageSize", required = false) Integer pageSize,
+                                        @RequestParam(required = false) String sortName,
+                                        @RequestParam(required = false) String startTime,
+                                        @RequestParam(required = false) String endTime) {
         SortOrLableSearchCondition solSearchCondition = new SortOrLableSearchCondition();
         solSearchCondition.setSortName(StringUtils.isEmpty(sortName) ? "" : sortName.trim());
         solSearchCondition.setStartTime(StringUtils.isEmpty(startTime) ? "" : startTime + " 00:00:00");
